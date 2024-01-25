@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpvemeibvy23a"]
+
+[ext_resource type="Script" path="res://Scenes/Multiplayer/board_manager.gd" id="1_gc0sp"]
+
+[node name="BoardManager" type="Node"]
+script = ExtResource("1_gc0sp")

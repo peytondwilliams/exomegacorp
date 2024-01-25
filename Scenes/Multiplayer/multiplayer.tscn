@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8rk3l82il5wo"]
+
+[ext_resource type="Script" path="res://Scenes/Multiplayer/multiplayer.gd" id="1_18nsi"]
+
+[node name="Multiplayer" type="Node" node_paths=PackedStringArray("ui", "ip_input")]
+script = ExtResource("1_18nsi")
+ui = NodePath("UI")
+ip_input = NodePath("UI/Control/HBoxContainer/IPInput")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HostButton" type="Button" parent="UI/Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="ConnectButton" type="Button" parent="UI/Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="IPInput" type="LineEdit" parent="UI/Control/HBoxContainer"]
+layout_mode = 2

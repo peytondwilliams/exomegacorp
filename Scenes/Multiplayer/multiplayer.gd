@@ -3,7 +3,7 @@ extends Node
 const PORT = 4433
 
 #@onready var player_scn = preload("res://scenes/core/player.tscn")
-#@onready var test_level_scn = preload("res://scenes/levels/test_level_1.tscn")
+@onready var board_scn = preload("res://Scenes/Multiplayer/board_manager.tscn")
 
 @export var ui : CanvasLayer
 @export var ip_input : LineEdit
@@ -35,8 +35,8 @@ func _on_host_button_pressed():
 	multiplayer.peer_connected.connect(spawn_player)
 	spawn_player(1)
 	start_game()
-	#var new_level = test_level_scn.instantiate()
-	#$Level.add_child(new_level)
+	var new_board = board_scn.instantiate()
+	$Level.add_child(new_board, true)
 
 
 func _on_connect_button_pressed():

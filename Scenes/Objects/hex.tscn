@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://vne87sfxivli"]
+
+[ext_resource type="Script" path="res://Scenes/Objects/hex.gd" id="1_3qitd"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_a1sxq"]
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.1
+radial_segments = 6
+rings = 1
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ds2e0"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 0
+
+[node name="Hex" type="Node3D"]
+script = ExtResource("1_3qitd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_a1sxq")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ds2e0")

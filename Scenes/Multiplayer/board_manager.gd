@@ -1,5 +1,6 @@
-extends Node
+extends Node3D
 
+# consts
 const DIRECTION_ARR = [
 					Vector3i(+1, 0, -1), #mid right
 					Vector3i(+1, -1, 0), #top right
@@ -9,12 +10,20 @@ const DIRECTION_ARR = [
 					Vector3i(0, +1, -1) #bot right
 					]
 
+# preloads
+@onready var HEX_TEMPLATE := preload("res://Scenes/Objects/hex.tscn")
+
+# node references
+@export var board : Node3D
+
+# variables
 var hex_grid : Dictionary = {}
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	if multiplayer.get_unique_id() == 1:
+		generate_map()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,12 +36,12 @@ func generate_map():
 	
 	for i in range(10):
 		for j in range(10):
-			#var hex = HEX.instantiate()
-			#$Hexes.add_child(hex)
-#
-			#hex.coords = curr_coords
-			#hex.position = 1.05 * cube_to_real_coords(curr_coords)
-			#hex_grid[generate_hex_key(curr_coords)] = {"hex": hex, "combat_units": [], "work_units": []}
+			var hex = HEX_TEMPLATE.instantiate()
+			board.add_child(hex, true)
+
+			hex.coords = curr_coords
+			hex.position = 1.05 * cube_to_real_coords(curr_coords)
+			hex_grid[generate_hex_keystr(curr_coords)] = {"hex": hex}
 			
 			curr_coords += DIRECTION_ARR[0]
 		curr_coords += (DIRECTION_ARR[3] * 10)
@@ -40,10 +49,14 @@ func generate_map():
 		if (i % 2 == 1):
 			curr_coords += DIRECTION_ARR[3]
 		
+func build_hashmap_from_nodes():
+	for hex : Node3D in board.get_children():
+		hex_grid[generate_hex_keystr(hex.coords)] = {"hex": hex}
+		pass
 
 # hex board utility funcs
 func generate_hex_keystr(coords: Vector3i):
-	return str(coords.x) + ", " + str(coords.y) + ", " + str(coords.z)
+	return str(coords.x) + "," + str(coords.y) + "," + str(coords.z)
 
 func keystr_to_coords(coords_key: String):
 	var coords_split = coords_key.split(",")

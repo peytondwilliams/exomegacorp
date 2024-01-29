@@ -15,6 +15,10 @@ run/main_scene="res://Scenes/Multiplayer/multiplayer.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlobalStateReference="*res://Scenes/Multiplayer/global_state_reference.gd"
+
 [dotnet]
 
 project/assembly_name="exomegacorp"

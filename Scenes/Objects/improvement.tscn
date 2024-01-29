@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://boyky6sf7sgy5"]
+
+[ext_resource type="Script" path="res://Scenes/Objects/improvement.gd" id="1_mswco"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ybt85"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="Improvement" type="Node3D"]
+script = ExtResource("1_mswco")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("BoxMesh_ybt85")

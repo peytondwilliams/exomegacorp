@@ -1,4 +1,7 @@
 extends Node3D
+class_name BoardManager
+
+@onready var gsr = GlobalStateReference
 
 # consts
 const DIRECTION_ARR = [
@@ -22,6 +25,8 @@ var hex_grid : Dictionary = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	gsr.board_manager = self
+	
 	if multiplayer.get_unique_id() == 1:
 		generate_map()
 

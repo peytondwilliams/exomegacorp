@@ -1,12 +1,7 @@
 extends Node3D
-class_name Hex
+class_name Improvement
 
 @onready var gsr = GlobalStateReference
-
-@export var coords = Vector3i.ZERO
-
-@export var player_owner := ""
-@export var improvement := ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,3 +11,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func calculate():
+	return {"carbon": 1}

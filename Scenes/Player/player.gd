@@ -2,6 +2,8 @@ extends Node3D
 
 const CAMERA_HORZ_SPEED := 20.0
 
+@onready var gsr = GlobalStateReference
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_vobub"]
 
-[node name="Player" type="Node3D"]
+[node name="Player" type="Node3D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_vobub")
+camera = NodePath("Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 10, 0)

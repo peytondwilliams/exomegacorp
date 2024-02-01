@@ -54,6 +54,7 @@ func generate_map():
 		if (i % 2 == 1):
 			curr_coords += DIRECTION_ARR[3]
 		
+@rpc("authority", "call_remote", "reliable")
 func build_hashmap_from_nodes():
 	for hex : Node3D in board.get_children():
 		hex_grid[generate_hex_keystr(hex.coords)] = {"hex": hex}

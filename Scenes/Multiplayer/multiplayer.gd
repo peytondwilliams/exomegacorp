@@ -5,8 +5,11 @@ const PORT = 4433
 #@onready var player_scn = preload("res://scenes/core/player.tscn")
 @onready var board_scn = preload("res://Scenes/Multiplayer/board_manager.tscn")
 
-@export var ui : CanvasLayer
+@export var server_ui : Control
 @export var ip_input : LineEdit
+
+@export var lobby_ui : Control
+@export var player_list_ui : VBoxContainer
 
 var spawn_pos = Vector2.ZERO
 
@@ -32,11 +35,11 @@ func _on_host_button_pressed():
 		OS.alert("Failed to start multiplayer server.")
 	multiplayer.multiplayer_peer = peer
 	
-	multiplayer.peer_connected.connect(spawn_player)
-	spawn_player(1)
-	start_game()
-	var new_board = board_scn.instantiate()
-	$Level.add_child(new_board, true)
+	multiplayer.peer_connected.connect(connect_player)
+	multiplayer.peer_disconnected.connect(disconnect_player)
+	connect_player(1)
+	
+	join_lobby()
 
 
 func _on_connect_button_pressed():
@@ -53,21 +56,38 @@ func _on_connect_button_pressed():
 		return
 		
 	multiplayer.multiplayer_peer = peer
-	start_game()
+	join_lobby()
 	
 		
-func start_game():
+func join_lobby():
 	# Hide the UI and unpause to start the game.
-	ui.hide()
+	server_ui.hide()
+	lobby_ui.show()
 	#get_tree().paused = false
 	#spawn_player.rpc_id(1, multiplayer.get_unique_id())
 	
+
+func connect_player(new_id: int):
+	generate_player_list_ui.rpc(Array(multiplayer.get_peers()) + [1]) 
+
+func disconnect_player(id: int):
+	generate_player_list_ui.rpc(Array(multiplayer.get_peers()) + [1])
 	
-func spawn_player(new_id: int):
-	pass
-	#var new_player = player_scn.instantiate()
-	#new_player.player_multi_id = new_id
-	#new_player._position = spawn_pos
-	#spawn_pos += Vector2(20, 20)
-	#$Level/Players.add_child(new_player, true)
+@rpc("authority", "call_local", "reliable")
+func generate_player_list_ui(new_player_list):
+	for n in player_list_ui.get_children():
+		player_list_ui.remove_child(n)
+		n.queue_free()
 	
+	for player in new_player_list:
+		var player_label = Label.new()
+		player_label.text = str(player)
+		player_list_ui.add_child(player_label)
+
+	
+
+func _on_start_button_pressed():
+	var new_board = board_scn.instantiate()
+	$Level.add_child(new_board, true)
+	
+	lobby_ui.hide()

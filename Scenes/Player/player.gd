@@ -21,16 +21,6 @@ func _process(delta):
 	if direction:
 		var new_position_flat = Vector2(position.x, position.z) + direction * delta * CAMERA_HORZ_SPEED
 		position = Vector3(new_position_flat.x, position.y, new_position_flat.y)
-		
-	if Input.is_action_just_pressed("input_click"):
-
-		if "collider" in raycast_result:
-			var hex_coords: Vector3i = raycast_result.collider.get_parent().coords
-			#select_hex.emit(hex_coords)
-			#if (player == 1):
-			#	click(hex_coords)
-			#else:
-			print("click coords:", hex_coords)
 
 func _physics_process(delta):
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -42,3 +32,13 @@ func _physics_process(delta):
 	ray_query.to = to
 	ray_query.collision_mask = COLLISION_MASK
 	raycast_result = space.intersect_ray(ray_query)
+	
+func _unhandled_input(event: InputEvent):
+	if event.is_action_pressed("input_click"):
+		if "collider" in raycast_result:
+			var hex_coords: Vector3i = raycast_result.collider.get_parent().coords
+			#select_hex.emit(hex_coords)
+			#if (player == 1):
+			#	click(hex_coords)
+			#else:
+			print("click coords:", hex_coords)

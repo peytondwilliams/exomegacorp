@@ -20,6 +20,32 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
+[node name="ResourceHBox" type="HBoxContainer" parent="UI/Control"]
+layout_mode = 0
+offset_left = 10.0
+offset_right = 201.0
+offset_bottom = 40.0
+
+[node name="FoodLabel" type="Label" parent="UI/Control/ResourceHBox"]
+layout_mode = 2
+text = "Food: 0"
+
+[node name="Label" type="Label" parent="UI/Control/ResourceHBox"]
+layout_mode = 2
+text = "|"
+
+[node name="IronLabel" type="Label" parent="UI/Control/ResourceHBox"]
+layout_mode = 2
+text = "Iron: 0"
+
+[node name="Label2" type="Label" parent="UI/Control/ResourceHBox"]
+layout_mode = 2
+text = "|"
+
+[node name="FuelLabel" type="Label" parent="UI/Control/ResourceHBox"]
+layout_mode = 2
+text = "Fuel: 0"
+
 [node name="BuildingHBox" type="HBoxContainer" parent="UI/Control"]
 layout_mode = 1
 anchors_preset = 2
@@ -31,8 +57,13 @@ grow_vertical = 0
 
 [node name="CityButton" type="Button" parent="UI/Control/BuildingHBox"]
 layout_mode = 2
+action_mode = 0
 text = "City"
 
 [node name="HarvesterButton" type="Button" parent="UI/Control/BuildingHBox"]
 layout_mode = 2
+action_mode = 0
 text = "Harvester"
+
+[connection signal="pressed" from="UI/Control/BuildingHBox/CityButton" to="." method="_on_city_button_pressed"]
+[connection signal="pressed" from="UI/Control/BuildingHBox/HarvesterButton" to="." method="_on_harvester_button_pressed"]

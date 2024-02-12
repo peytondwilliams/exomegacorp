@@ -104,6 +104,9 @@ func cube_round(coords: Vector3):
 func cube_distance(a: Vector3i, b: Vector3i):
 	return (abs(a.x - b.x) + abs(a.y - b.y) + abs(a.z - b.z)) / 2
 	
+func get_hex(coords: Vector3i):
+	return hex_grid[generate_hex_keystr(coords)]	
+	
 	
 func neighbors(coords_key: String):
 	var base_coords = keystr_to_coords(coords_key)
@@ -116,6 +119,21 @@ func neighbors(coords_key: String):
 			found_neighbors.append(new_coords_key)
 			
 	return found_neighbors
+
+func calc():
+	var all_output = {}
+	for peer in Array(multiplayer.get_peers()) + [1]:
+		all_output[str(peer)] = {}
+	
+	for key in hex_grid:
+		var output = hex_grid[key].calc()
+		for key_out in output:
+			if all_output[hex_grid[key].player_owner].contains(key_out):
+				all_output[hex_grid[key].player_owner] += output[key_out]
+			else:
+				all_output[hex_grid[key].player_owner] = output[key_out] 
+				
+	return all_output
 
 	
 # player actions

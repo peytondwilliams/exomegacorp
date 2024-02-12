@@ -35,6 +35,10 @@ func update_biome(new_biome):
 	var mat : StandardMaterial3D = mesh.mesh.surface_get_material(0)
 	mat.albedo_color = BIOMES[biome]["color"]
 
+func calc():
+	if biome == "grass":
+		return {"food": output} 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

@@ -3,7 +3,7 @@ extends Node
 const PORT = 4433
 
 #@onready var player_scn = preload("res://scenes/core/player.tscn")
-@onready var board_scn = preload("res://Scenes/Multiplayer/board_manager.tscn")
+@onready var game_scn = preload("res://Scenes/Multiplayer/game_manager.tscn")
 
 @export var server_ui : Control
 @export var ip_input : LineEdit
@@ -87,7 +87,7 @@ func generate_player_list_ui(new_player_list):
 	
 
 func _on_start_button_pressed():
-	var new_board = board_scn.instantiate()
-	$Level.add_child(new_board, true)
+	var new_game = game_scn.instantiate()
+	$Level.add_child(new_game, true)
 	
 	lobby_ui.hide()

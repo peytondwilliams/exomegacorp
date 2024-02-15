@@ -2,9 +2,12 @@
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_vobub"]
 
-[node name="Player" type="Node3D" node_paths=PackedStringArray("camera")]
+[node name="Player" type="Node3D" node_paths=PackedStringArray("camera", "food_label", "iron_label", "fuel_label")]
 script = ExtResource("1_vobub")
 camera = NodePath("Camera3D")
+food_label = NodePath("UI/Control/ResourceHBox/FoodLabel")
+iron_label = NodePath("UI/Control/ResourceHBox/IronLabel")
+fuel_label = NodePath("UI/Control/ResourceHBox/FuelLabel")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 10, 0)
@@ -65,5 +68,7 @@ layout_mode = 2
 action_mode = 0
 text = "Harvester"
 
+[connection signal="mouse_entered" from="UI/Control/BuildingHBox" to="." method="_on_building_h_box_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Control/BuildingHBox" to="." method="_on_building_h_box_mouse_exited"]
 [connection signal="pressed" from="UI/Control/BuildingHBox/CityButton" to="." method="_on_city_button_pressed"]
 [connection signal="pressed" from="UI/Control/BuildingHBox/HarvesterButton" to="." method="_on_harvester_button_pressed"]

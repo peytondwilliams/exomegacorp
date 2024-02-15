@@ -8,6 +8,9 @@ size = Vector3(0.5, 0.5, 0.5)
 [node name="Improvement" type="Node3D"]
 script = ExtResource("1_mswco")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 mesh = SubResource("BoxMesh_ybt85")
+skeleton = NodePath("../..")

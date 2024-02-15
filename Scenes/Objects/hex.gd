@@ -18,7 +18,7 @@ const BIOMES = {
 @export var mesh : MeshInstance3D
 
 @export var coords = Vector3i.ZERO
-@export var player_owner := ""
+@export var player_owner := "1"
 
 var biome = "grass"
 var output = 5
@@ -34,6 +34,14 @@ func update_biome(new_biome):
 	biome = new_biome
 	var mat : StandardMaterial3D = mesh.mesh.surface_get_material(0)
 	mat.albedo_color = BIOMES[biome]["color"]
+	
+@rpc("authority", "call_local", "reliable")	
+func add_improvement(building: String, player: String):
+	var new_improv = gsr.BUILD_CONSTS[building].scene.instantiate()
+	add_child(new_improv, true)
+	improvement = new_improv
+	player_owner = player
+	
 
 func calc():
 	if biome == "grass":

@@ -1,4 +1,5 @@
-extends Node3D
+extends Node3D 
+class_name Player
 
 const RAY_LENGTH = 100
 const CAMERA_HORZ_SPEED := 20.0
@@ -11,11 +12,13 @@ const COLLISION_MASK = 1
 @export var iron_label : Label
 @export var fuel_label : Label
 
-var raycast_result : Dictionary = {}
+var raycast_result := {}
 
 var select := "none" 
 
-var inventory_copy = {}
+var inventory_copy := {}
+
+var mouse_in_ui := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,24 +44,19 @@ func _physics_process(delta):
 	raycast_result = space.intersect_ray(ray_query)
 	
 func _unhandled_input(event: InputEvent):
-	if event.is_action_pressed("input_click"):
-		if "collider" in raycast_result:
-			var hex_coords: Vector3i = raycast_result.collider.get_parent().coords
-			#select_hex.emit(hex_coords)
-			#if (player == 1):
-			#	click(hex_coords)
-			#else:
-			print("click coords:", hex_coords)
-			var select_hex = gsr.board_manager.get_hex(hex_coords)
+	pass
 			
 
 func _input(event: InputEvent):
-	if event.is_action_released("input_click") and true: # TODO check if mouse still on button
+	if event.is_action_released("input_click") and not mouse_in_ui: # TODO fix mouse_in_ui
 		if  select != "none":
-			print("attempt build")
-			if select == "city":
-				pass
-				
+			if "collider" in raycast_result:
+				var hex_coords: Vector3i = raycast_result.collider.get_parent().coords
+
+				print("click coords:", hex_coords)
+				var select_hex = gsr.board_manager.get_hex(hex_coords)
+				gsr.game_manager.build_action.rpc_id(1, select, select_hex.coords)
+					
 		select = "none"
 
 func _on_city_button_pressed():
@@ -74,3 +72,13 @@ func receive_inventory_update(new_inv : Dictionary):
 	food_label.text = "Food: " + str(inventory_copy["food"])
 	iron_label.text = "Iron: " + str(inventory_copy["iron"])
 	fuel_label.text = "Fuel: " + str(inventory_copy["fuel"])
+
+
+func _on_building_h_box_mouse_entered():
+	mouse_in_ui = true
+	print("yess")
+
+
+func _on_building_h_box_mouse_exited():
+	mouse_in_ui = false
+	print("noo")

@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpvemeibvy23a"]
+[gd_scene load_steps=5 format=3 uid="uid://cpvemeibvy23a"]
 
 [ext_resource type="Script" path="res://Scenes/Multiplayer/board_manager.gd" id="1_gc0sp"]
-[ext_resource type="PackedScene" uid="uid://c3a83iirtt3m" path="res://Scenes/Player/player.tscn" id="2_4movs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ejblo"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -19,8 +18,6 @@ glow_enabled = true
 [node name="BoardManager" type="Node3D" node_paths=PackedStringArray("board")]
 script = ExtResource("1_gc0sp")
 board = NodePath("Board3D")
-
-[node name="Player" parent="." instance=ExtResource("2_4movs")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_r0bcb")

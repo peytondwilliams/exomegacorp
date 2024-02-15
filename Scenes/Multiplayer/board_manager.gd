@@ -46,7 +46,7 @@ func generate_map():
 
 			hex.coords = curr_coords
 			hex.position = 1.05 * cube_to_real_coords(curr_coords)
-			hex_grid[generate_hex_keystr(curr_coords)] = {"hex": hex}
+			hex_grid[generate_hex_keystr(curr_coords)] = hex
 			
 			curr_coords += DIRECTION_ARR[0]
 		curr_coords += (DIRECTION_ARR[3] * 10)
@@ -57,7 +57,7 @@ func generate_map():
 @rpc("authority", "call_remote", "reliable")
 func build_hashmap_from_nodes():
 	for hex : Node3D in board.get_children():
-		hex_grid[generate_hex_keystr(hex.coords)] = {"hex": hex}
+		hex_grid[generate_hex_keystr(hex.coords)] = hex
 		pass
 
 # hex board utility funcs
@@ -127,11 +127,14 @@ func calc():
 	
 	for key in hex_grid:
 		var output = hex_grid[key].calc()
-		for key_out in output:
-			if all_output[hex_grid[key].player_owner].contains(key_out):
-				all_output[hex_grid[key].player_owner] += output[key_out]
+		for resource in output:
+			if hex_grid[key].player_owner == "none":
+				continue
+
+			if all_output[hex_grid[key].player_owner].has(resource):
+				all_output[hex_grid[key].player_owner][resource] += output[resource]
 			else:
-				all_output[hex_grid[key].player_owner] = output[key_out] 
+				all_output[hex_grid[key].player_owner][resource] = output[resource] 
 				
 	return all_output
 
@@ -147,6 +150,12 @@ func move_unit(unit, coords: Vector3i):
 	
 	pawn.coords = coords
 	pawn.position = cube_to_real_coords(coords) * 1.05 + Vector3(0, 1, 0)
+
+
+func build(building: String, location: Vector3i, player: String):
+	get_hex(location).add_improvement.rpc(building, player)
+	pass
+	
 
 func _on_player_select_hex(coords: Vector3i):
 	var hex_dict = hex_grid[generate_hex_keystr(coords)]

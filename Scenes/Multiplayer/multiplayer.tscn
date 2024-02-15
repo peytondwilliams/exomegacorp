@@ -69,7 +69,7 @@ offset_bottom = 110.0
 [node name="Level" type="Node3D" parent="."]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Level"]
-_spawnable_scenes = PackedStringArray("res://Scenes/Multiplayer/board_manager.tscn")
+_spawnable_scenes = PackedStringArray("res://Scenes/Multiplayer/game_manager.tscn")
 spawn_path = NodePath("..")
 
 [connection signal="pressed" from="UI/ServerUI/HBoxContainer/HostButton" to="." method="_on_host_button_pressed"]

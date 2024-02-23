@@ -47,17 +47,17 @@ text = "Mineral: 0"
 layout_mode = 2
 text = "|"
 
-[node name="EnergyLabel" type="Label" parent="UI/Control/ResourceHBox"]
+[node name="MaterialLabel" type="Label" parent="UI/Control/ResourceHBox"]
 layout_mode = 2
-text = "Energy: 0"
+text = "Material: 0"
 
 [node name="Label3" type="Label" parent="UI/Control/ResourceHBox"]
 layout_mode = 2
 text = "|"
 
-[node name="MaterialLabel" type="Label" parent="UI/Control/ResourceHBox"]
+[node name="EnergyLabel" type="Label" parent="UI/Control/ResourceHBox"]
 layout_mode = 2
-text = "Material: 0"
+text = "Energy: 0"
 
 [node name="Label4" type="Label" parent="UI/Control/ResourceHBox"]
 layout_mode = 2

@@ -18,7 +18,7 @@ const BIOMES = {
 @export var mesh : MeshInstance3D
 
 @export var coords = Vector3i.ZERO
-@export var player_owner := "1"
+@export var player_owner := ""
 
 var biome = "grass"
 var output = 5

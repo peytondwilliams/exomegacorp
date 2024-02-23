@@ -128,7 +128,7 @@ func calc():
 	for key in hex_grid:
 		var output = hex_grid[key].calc()
 		for resource in output:
-			if hex_grid[key].player_owner == "none":
+			if hex_grid[key].player_owner == "":
 				continue
 
 			if all_output[hex_grid[key].player_owner].has(resource):

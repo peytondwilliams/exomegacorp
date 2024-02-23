@@ -18,12 +18,7 @@ func _ready():
 	gsr.game_manager = self
 	
 	for peer in Array(multiplayer.get_peers()) + [multiplayer.get_unique_id()]:
-		player_inventory[str(peer)] = {}
-		player_inventory[str(peer)]["nutrient"] = 0
-		player_inventory[str(peer)]["mineral"] = 0
-		player_inventory[str(peer)]["energy"] = 0
-		player_inventory[str(peer)]["material"] = 0
-		player_inventory[str(peer)]["artifact"] = 0
+		player_inventory[str(peer)] = gsr.STARTING_RESOURCES.duplicate(true)
 
 func _physics_process(delta):
 	game_time_sec += delta

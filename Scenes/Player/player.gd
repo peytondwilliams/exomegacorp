@@ -8,9 +8,11 @@ const COLLISION_MASK = 1
 @onready var gsr = GlobalStateReference
 
 @export var camera : Camera3D
-@export var food_label : Label
-@export var iron_label : Label
-@export var fuel_label : Label
+@export var nutrient_label : Label
+@export var mineral_label : Label
+@export var energy_label : Label
+@export var material_label : Label
+@export var artifact_label : Label
 
 var raycast_result := {}
 
@@ -69,10 +71,11 @@ func _on_harvester_button_pressed():
 func receive_inventory_update(new_inv : Dictionary):
 	inventory_copy = new_inv
 	
-	food_label.text = "Food: " + str(inventory_copy["food"])
-	iron_label.text = "Iron: " + str(inventory_copy["iron"])
-	fuel_label.text = "Fuel: " + str(inventory_copy["fuel"])
-
+	nutrient_label.text = "Nutrient: " + str(inventory_copy["nutrient"])
+	mineral_label.text = "Mineral: " + str(inventory_copy["mineral"])
+	energy_label.text = "Energy: " + str(inventory_copy["energy"])
+	material_label.text = "Material: " + str(inventory_copy["material"])
+	artifact_label.text = "Artifact: " + str(inventory_copy["artifact"])
 
 func _on_building_h_box_mouse_entered():
 	mouse_in_ui = true

@@ -45,7 +45,7 @@ func add_improvement(building: String, player: String):
 
 func calc():
 	if biome == "grass":
-		return {"food": output} 
+		return {"nutrient": output} 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -89,5 +89,8 @@ func generate_player_list_ui(new_player_list):
 func _on_start_button_pressed():
 	var new_game = game_scn.instantiate()
 	$Level.add_child(new_game, true)
+	hide_lobby_ui.rpc()
 	
+@rpc("authority", "call_local", "reliable")	
+func hide_lobby_ui():
 	lobby_ui.hide()

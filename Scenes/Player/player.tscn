@@ -2,12 +2,14 @@
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_vobub"]
 
-[node name="Player" type="Node3D" node_paths=PackedStringArray("camera", "food_label", "iron_label", "fuel_label")]
+[node name="Player" type="Node3D" node_paths=PackedStringArray("camera", "nutrient_label", "mineral_label", "energy_label", "material_label", "artifact_label")]
 script = ExtResource("1_vobub")
 camera = NodePath("Camera3D")
-food_label = NodePath("UI/Control/ResourceHBox/FoodLabel")
-iron_label = NodePath("UI/Control/ResourceHBox/IronLabel")
-fuel_label = NodePath("UI/Control/ResourceHBox/FuelLabel")
+nutrient_label = NodePath("UI/Control/ResourceHBox/NutrientLabel")
+mineral_label = NodePath("UI/Control/ResourceHBox/MineralLabel")
+energy_label = NodePath("UI/Control/ResourceHBox/EnergyLabel")
+material_label = NodePath("UI/Control/ResourceHBox/MaterialLabel")
+artifact_label = NodePath("UI/Control/ResourceHBox/ArtifactLabel")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 10, 0)
@@ -29,25 +31,41 @@ offset_left = 10.0
 offset_right = 201.0
 offset_bottom = 40.0
 
-[node name="FoodLabel" type="Label" parent="UI/Control/ResourceHBox"]
+[node name="NutrientLabel" type="Label" parent="UI/Control/ResourceHBox"]
 layout_mode = 2
-text = "Food: 0"
+text = "Nutrient: 0"
 
 [node name="Label" type="Label" parent="UI/Control/ResourceHBox"]
 layout_mode = 2
 text = "|"
 
-[node name="IronLabel" type="Label" parent="UI/Control/ResourceHBox"]
+[node name="MineralLabel" type="Label" parent="UI/Control/ResourceHBox"]
 layout_mode = 2
-text = "Iron: 0"
+text = "Mineral: 0"
 
 [node name="Label2" type="Label" parent="UI/Control/ResourceHBox"]
 layout_mode = 2
 text = "|"
 
-[node name="FuelLabel" type="Label" parent="UI/Control/ResourceHBox"]
+[node name="EnergyLabel" type="Label" parent="UI/Control/ResourceHBox"]
 layout_mode = 2
-text = "Fuel: 0"
+text = "Energy: 0"
+
+[node name="Label3" type="Label" parent="UI/Control/ResourceHBox"]
+layout_mode = 2
+text = "|"
+
+[node name="MaterialLabel" type="Label" parent="UI/Control/ResourceHBox"]
+layout_mode = 2
+text = "Material: 0"
+
+[node name="Label4" type="Label" parent="UI/Control/ResourceHBox"]
+layout_mode = 2
+text = "|"
+
+[node name="ArtifactLabel" type="Label" parent="UI/Control/ResourceHBox"]
+layout_mode = 2
+text = "Artifact: 0"
 
 [node name="BuildingHBox" type="HBoxContainer" parent="UI/Control"]
 layout_mode = 1

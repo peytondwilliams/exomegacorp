@@ -12,4 +12,4 @@ func _process(delta):
 
 
 func calculate():
-	return {"carbon": 1}
+	return {"nutrient": 1}

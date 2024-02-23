@@ -19,9 +19,11 @@ func _ready():
 	
 	for peer in Array(multiplayer.get_peers()) + [multiplayer.get_unique_id()]:
 		player_inventory[str(peer)] = {}
-		player_inventory[str(peer)]["food"] = 0
-		player_inventory[str(peer)]["iron"] = 0
-		player_inventory[str(peer)]["fuel"] = 0
+		player_inventory[str(peer)]["nutrient"] = 0
+		player_inventory[str(peer)]["mineral"] = 0
+		player_inventory[str(peer)]["energy"] = 0
+		player_inventory[str(peer)]["material"] = 0
+		player_inventory[str(peer)]["artifact"] = 0
 
 func _physics_process(delta):
 	game_time_sec += delta

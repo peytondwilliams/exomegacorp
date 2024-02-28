@@ -10,12 +10,37 @@ const STARTING_RESOURCES := {
 	"artifact": 0	
 }
 
+
+const BIOMES = {
+	"grass" : {
+		"color": Color.LIME_GREEN
+	},
+	"mountain" : {
+		"color": Color.GRAY
+	},
+	"desert" : {
+		"color": Color.YELLOW
+	},
+	"clay" : {
+		"color": Color.SADDLE_BROWN
+	},
+	"ruin" : {
+		"color": Color.REBECCA_PURPLE
+	},
+}
+
 @onready var BUILD_CONSTS : Dictionary = {
 	"city": {
 		"scene": preload("res://Scenes/Objects/improvement_city.tscn"),
 		"cost": {"material": 5}
+	},
+	"harvester": {
+		"scene": preload("res://Scenes/Objects/improvement_harvester.tscn"),
+		"cost": {"material": 5}
 	}
 }
+
+
 
 var game_manager : GameManager = null
 var board_manager : BoardManager = null

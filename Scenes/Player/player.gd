@@ -51,6 +51,9 @@ func _unhandled_input(event: InputEvent):
 
 func _input(event: InputEvent):
 	if event.is_action_released("input_click") and not mouse_in_ui: # TODO fix mouse_in_ui
+		#if "collider" in raycast_result:
+			#var hex_coords: Vector3i = raycast_result.collider.get_parent().coords
+			#print("click coords:", hex_coords)
 		if  select != "none":
 			if "collider" in raycast_result:
 				var hex_coords: Vector3i = raycast_result.collider.get_parent().coords

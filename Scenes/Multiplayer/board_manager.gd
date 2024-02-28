@@ -22,6 +22,8 @@ const DIRECTION_ARR = [
 # variables
 var hex_grid : Dictionary = {}
 
+var rng = RandomNumberGenerator.new()
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,8 +43,15 @@ func generate_map():
 	
 	for i in range(10):
 		for j in range(10):
-			var hex = HEX_TEMPLATE.instantiate()
+			var hex : Hex = HEX_TEMPLATE.instantiate()
+			
+			var biome = gsr.BIOMES.keys()[rng.randi_range(0, 4)]
+			var output = rng.randi_range(1, 5)
+			hex.update_biome(biome, output)
+			
 			board.add_child(hex, true)
+
+			#hex.update_biome.rpc(biome, output)
 
 			hex.coords = curr_coords
 			hex.position = 1.05 * cube_to_real_coords(curr_coords)

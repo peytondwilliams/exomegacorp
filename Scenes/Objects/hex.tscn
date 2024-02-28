@@ -3,8 +3,10 @@
 [ext_resource type="Script" path="res://Scenes/Objects/hex.gd" id="1_3qitd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xyvc0"]
+resource_local_to_scene = true
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_a1sxq"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_lsyq2"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_xyvc0")
 top_radius = 1.0
 bottom_radius = 1.0
@@ -19,16 +21,23 @@ properties/0/replication_mode = 0
 properties/1/path = NodePath(".:coords")
 properties/1/spawn = true
 properties/1/replication_mode = 0
+properties/2/path = NodePath(".:biome")
+properties/2/spawn = true
+properties/2/replication_mode = 0
+properties/3/path = NodePath(".:output")
+properties/3/spawn = true
+properties/3/replication_mode = 0
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ecgy7"]
 data = PackedVector3Array(0, 0.05, 1, 0.866, 0.05, 0.5, 0, 0, 1, 0.866, 0.05, 0.5, 0.866, 0, 0.5, 0, 0, 1, 0.866, 0.05, 0.5, 0.866, 0.05, -0.5, 0.866, 0, 0.5, 0.866, 0.05, -0.5, 0.866, 0, -0.5, 0.866, 0, 0.5, 0.866, 0.05, -0.5, 0, 0.05, -1, 0.866, 0, -0.5, 0, 0.05, -1, 0, 0, -1, 0.866, 0, -0.5, 0, 0.05, -1, -0.866, 0.05, -0.5, 0, 0, -1, -0.866, 0.05, -0.5, -0.866, 0, -0.5, 0, 0, -1, -0.866, 0.05, -0.5, -0.866, 0.05, 0.5, -0.866, 0, -0.5, -0.866, 0.05, 0.5, -0.866, 0, 0.5, -0.866, 0, -0.5, -0.866, 0.05, 0.5, 0, 0.05, 1, -0.866, 0, 0.5, 0, 0.05, 1, 0, 0, 1, -0.866, 0, 0.5, 0, 0, 1, 0.866, 0, 0.5, 0, -0.05, 1, 0.866, 0, 0.5, 0.866, -0.05, 0.5, 0, -0.05, 1, 0.866, 0, 0.5, 0.866, 0, -0.5, 0.866, -0.05, 0.5, 0.866, 0, -0.5, 0.866, -0.05, -0.5, 0.866, -0.05, 0.5, 0.866, 0, -0.5, 0, 0, -1, 0.866, -0.05, -0.5, 0, 0, -1, 0, -0.05, -1, 0.866, -0.05, -0.5, 0, 0, -1, -0.866, 0, -0.5, 0, -0.05, -1, -0.866, 0, -0.5, -0.866, -0.05, -0.5, 0, -0.05, -1, -0.866, 0, -0.5, -0.866, 0, 0.5, -0.866, -0.05, -0.5, -0.866, 0, 0.5, -0.866, -0.05, 0.5, -0.866, -0.05, -0.5, -0.866, 0, 0.5, 0, 0, 1, -0.866, -0.05, 0.5, 0, 0, 1, 0, -0.05, 1, -0.866, -0.05, 0.5, 0, 0.05, 0, 0.866, 0.05, 0.5, 0, 0.05, 1, 0, 0.05, 0, 0.866, 0.05, -0.5, 0.866, 0.05, 0.5, 0, 0.05, 0, 0, 0.05, -1, 0.866, 0.05, -0.5, 0, 0.05, 0, -0.866, 0.05, -0.5, 0, 0.05, -1, 0, 0.05, 0, -0.866, 0.05, 0.5, -0.866, 0.05, -0.5, 0, 0.05, 0, 0, 0.05, 1, -0.866, 0.05, 0.5, 0, -0.05, 0, 0, -0.05, 1, 0.866, -0.05, 0.5, 0, -0.05, 0, 0.866, -0.05, 0.5, 0.866, -0.05, -0.5, 0, -0.05, 0, 0.866, -0.05, -0.5, 0, -0.05, -1, 0, -0.05, 0, 0, -0.05, -1, -0.866, -0.05, -0.5, 0, -0.05, 0, -0.866, -0.05, -0.5, -0.866, -0.05, 0.5, 0, -0.05, 0, -0.866, -0.05, 0.5, 0, -0.05, 1)
 
-[node name="Hex" type="Node3D" node_paths=PackedStringArray("mesh")]
+[node name="Hex" type="Node3D" node_paths=PackedStringArray("mesh", "output_label")]
 script = ExtResource("1_3qitd")
 mesh = NodePath("MeshInstance3D")
+output_label = NodePath("Label3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CylinderMesh_a1sxq")
+mesh = SubResource("CylinderMesh_lsyq2")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_ds2e0")
@@ -37,3 +46,8 @@ replication_config = SubResource("SceneReplicationConfig_ds2e0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ecgy7")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.0510183, 0.412912)
+text = "3"
+font_size = 64

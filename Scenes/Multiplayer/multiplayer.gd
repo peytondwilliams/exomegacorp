@@ -84,7 +84,6 @@ func generate_player_list_ui(new_player_list):
 		player_label.text = str(player)
 		player_list_ui.add_child(player_label)
 
-	
 
 func _on_start_button_pressed():
 	var new_game = game_scn.instantiate()

@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfbo2f0m3hjqs"]
+[gd_scene load_steps=4 format=3 uid="uid://bfbo2f0m3hjqs"]
 
 [ext_resource type="PackedScene" uid="uid://boyky6sf7sgy5" path="res://Scenes/Objects/improvement.tscn" id="1_4v3gg"]
 [ext_resource type="Script" path="res://Scenes/Objects/improvement_city.gd" id="2_k8nel"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_4io0i"]
+size = Vector3(0.5, 0.5, 0.5)
+
 [node name="City" instance=ExtResource("1_4v3gg")]
 script = ExtResource("2_k8nel")
+
+[node name="MeshInstance3D" parent="Mesh" index="0"]
+mesh = SubResource("BoxMesh_4io0i")

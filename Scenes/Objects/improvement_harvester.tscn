@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://luxpmn267d77"]
+
+[ext_resource type="PackedScene" uid="uid://boyky6sf7sgy5" path="res://Scenes/Objects/improvement.tscn" id="1_jcvyo"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hkyrh"]
+height = 0.5
+
+[node name="Harvester" instance=ExtResource("1_jcvyo")]
+
+[node name="MeshInstance3D" parent="Mesh" index="0"]
+mesh = SubResource("CylinderMesh_hkyrh")
